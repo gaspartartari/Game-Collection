@@ -28,9 +28,6 @@ public class Game implements Serializable{
     private Double score;
     private String imgUrl;
 
-    @Transient
-    private Set<GameList> gameLists;
-
     @Column(columnDefinition = "TEXT")
     private String shortDescription;
  
