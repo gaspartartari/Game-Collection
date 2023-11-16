@@ -11,6 +11,7 @@ import org.w3c.dom.html.HTMLOptGroupElement;
 import com.learning.gamecollection.DTO.GameDTO;
 import com.learning.gamecollection.DTO.GameMinDTO;
 import com.learning.gamecollection.entities.Game;
+import com.learning.gamecollection.projections.GameMinProjection;
 import com.learning.gamecollection.repositories.GameRepository;
 
 @Service
@@ -29,5 +30,11 @@ public class GameService {
     public GameDTO findById(Long id){
         Game obj = repository.findById(id).get();
         return new GameDTO(obj);
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long listId){
+        List<GameMinProjection> list = repository.searchByList(listId);
+        return list.stream().map(x -> new GameMinDTO(x)).toList();
     }
 }
