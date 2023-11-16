@@ -1,6 +1,7 @@
 package com.learning.gamecollection.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "tb_game")
@@ -25,6 +27,9 @@ public class Game implements Serializable{
     private String platforms;
     private Double score;
     private String imgUrl;
+
+    @Transient
+    private Set<GameList> gameLists;
 
     @Column(columnDefinition = "TEXT")
     private String shortDescription;
